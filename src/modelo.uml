@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="84.5" y="557.0">modelo.Aluno</node>
+    <node x="84.5" y="-3.0">modelo.Professor</node>
+    <node x="65.5" y="244.0">modelo.Aula</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="modelo.Professor" target="modelo.Aula">
+      <point x="0.0" y="83.0" />
+      <point x="0.0" y="-116.0" />
+    </edge>
+    <edge source="modelo.Aula" target="modelo.Aluno">
+      <point x="134.5" y="0.0" />
+      <point x="400.0" y="360.0" />
+      <point x="400.0" y="640.0" />
+      <point x="115.5" y="0.0" />
+    </edge>
+    <edge source="modelo.Aluno" target="modelo.Aula">
+      <point x="0.0" y="-83.0" />
+      <point x="0.0" y="116.0" />
+    </edge>
+    <edge source="modelo.Aula" target="modelo.Professor">
+      <point x="-134.5" y="0.0" />
+      <point x="0.0" y="360.0" />
+      <point x="0.0" y="80.0" />
+      <point x="-115.5" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Orthogonal" zoom="0.9691689008042895" x="200.0" y="360.0" />
+  <SelectedNodes>
+    <node>modelo.Aluno</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
