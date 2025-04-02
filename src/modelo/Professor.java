@@ -2,50 +2,26 @@ package modelo;
 
 import java.util.LinkedList;
 
-public class Professor {
-    private String nome;
-    private long numero;
-    private LinkedList<Aula> aulas;
+public class Professor extends Pessoa {
 
     public Professor(String nome, long numero) {
-        this.nome = nome;
-        this.numero = numero;
-        aulas = new LinkedList<>();
+        super(nome, numero);
     }
 
-    public String getNome() {
-        return nome;
-    }
 
-    public long getNumero() {
-        return numero;
-    }
-
-    public void setNumero(long numero) {
-        this.numero = numero;
-    }
-
+    @Override
     public void adicionar(Aula aula) {
-        if (aula == null || aulas.contains(aula)) {
-            return;
-        }
-        aulas.add(aula);
+        super.adicionar(aula);
         aula.setProfessor(this);
     }
 
+    @Override
     public void remover(Aula aula) {
-        if (!aulas.contains(aula)) {
-            return;
-        }
-        aulas.remove(aula);
+        super.remover(aula);
         aula.desassociarProfessor();
     }
 
-    public void preencherSumario(Aula aula) {
-        if (!aulas.contains(aula)){
-            return;
-        }
-
+    protected void escreverSumario(Aula aula) {
         aula.adicionarLinhaSumario(aula.getNome());
         aula.adicionarLinhaSumario(String.valueOf(aula.getNumero()));
         aula.adicionarLinhaSumario(nome);
