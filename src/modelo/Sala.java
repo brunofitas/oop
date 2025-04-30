@@ -2,16 +2,18 @@ package modelo;
 
 import java.util.LinkedList;
 
-public class Sala {
-    private String nome;
+public class Sala extends Descritor {
+
     private boolean aberta;
     private LinkedList<Aula> aulas;
 
     public Sala(String nome, boolean aberta){
-
+        super(nome);
+        this.aberta = aberta;
+        this.aulas = new LinkedList<Aula>();
     }
 
-    public String getNome() { return this.nome; }
+
     public boolean isAberta(){ return this.aberta; }
     public void abrir(){ this.aberta = true; }
     public void fechar() { this.aberta = false; }

@@ -1,17 +1,14 @@
 package modelo;
 
-public class Identificador {
-    protected String nome;
+public class Identificador extends Descritor {
+
     protected long numero;
 
     public Identificador(String nome, long numero) {
-        this.nome = nome;
+        super(nome);
         this.numero = numero;
     }
 
-    public String getNome() {
-        return nome;
-    }
 
     public long getNumero() {
         return numero;

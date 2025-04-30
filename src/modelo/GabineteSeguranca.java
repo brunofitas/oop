@@ -2,19 +2,34 @@ package modelo;
 
 import java.util.LinkedList;
 
-public class GabineteSeguranca {
-    private String nome;
+public class GabineteSeguranca extends Descritor{
     private boolean aberta;
     private LinkedList<Seguranca> segurancas;
 
-    // TODO - Constructor
+    public GabineteSeguranca(String nome, boolean aberta){
+        super(nome);
+        this.aberta = aberta;
+        this.segurancas = new LinkedList<Seguranca>();
+    }
 
-    public String getNome(){ return this.nome; }
     public boolean isAberta(){ return this.aberta; }
-    public void abrir(){ /** TODO - abrir **/ }
-    public void fechar(){ /** TODO - fechar **/ }
-    public void adicionar(Seguranca seguranca){ /** TODO - adicionar **/ }
-    public void remover(Seguranca seguranca){ /** TODO - remover **/ }
+    public void abrir(){ this.aberta = true; }
+    public void fechar(){ this.aberta = false; }
+    public void adicionar(Seguranca seguranca){
+        if(seguranca == null || this.segurancas.contains(seguranca)){
+            return;
+        }
+        this.segurancas.add(seguranca);
+        seguranca.setGabinete(this);
+
+    }
+    public void remover(Seguranca seguranca){
+        if(!this.segurancas.contains(seguranca)){
+            return;
+        }
+        this.segurancas.remove(seguranca);
+        seguranca.desassociarGabinete();
+    }
     public LinkedList<Seguranca> getSegurancas(){
         return new LinkedList<Seguranca>(this.segurancas);
     }
