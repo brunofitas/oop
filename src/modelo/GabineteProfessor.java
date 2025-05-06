@@ -2,20 +2,17 @@ package modelo;
 
 import java.util.LinkedList;
 
-public class GabineteProfessor extends Descritor{
+public class GabineteProfessor extends Divisao{
 
-    private boolean aberta;
     private LinkedList<Professor> professores;
 
     public GabineteProfessor(String nome, boolean aberta){
-        super(nome);
-        this.aberta = aberta;
+        super(nome, aberta);
+
         this.professores = new LinkedList<Professor>();
     }
 
-    public boolean isAberta(){ return this.aberta; }
-    public void abrir(){ this.aberta = true; }
-    public void fechar(){ this.aberta = false; }
+
     public void adicionar(Professor professor){
         if (professor == null || this.professores.contains(professor)) {
             return;

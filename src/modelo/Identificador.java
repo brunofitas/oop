@@ -1,6 +1,6 @@
 package modelo;
 
-public class Identificador extends Descritor {
+public abstract class Identificador extends Descritor {
 
     protected long numero;
 
@@ -8,7 +8,6 @@ public class Identificador extends Descritor {
         super(nome);
         this.numero = numero;
     }
-
 
     public long getNumero() {
         return numero;

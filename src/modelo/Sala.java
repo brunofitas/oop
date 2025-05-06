@@ -2,27 +2,42 @@ package modelo;
 
 import java.util.LinkedList;
 
-public class Sala extends Descritor {
+public class Sala extends Divisao {
 
-    private boolean aberta;
     private LinkedList<Aula> aulas;
 
     public Sala(String nome, boolean aberta){
-        super(nome);
-        this.aberta = aberta;
+        super(nome, aberta);
         this.aulas = new LinkedList<Aula>();
     }
 
-
-    public boolean isAberta(){ return this.aberta; }
-    public void abrir(){ this.aberta = true; }
-    public void fechar() { this.aberta = false; }
-    public void adicionar(Aula aula){ /** TODO - adicionar **/ }
-    public void remover(Aula aula){ /** TODO - remover **/ }
-    public LinkedList<Aula> getAulas() { return new LinkedList<Aula>(this.aulas);}
+    public void adicionar(Aula aula){
+        if(aula == null || this.aulas.contains(aula)){
+            return;
+        }
+        this.aulas.add(aula);
+        aula.setSala(this);
+    }
+    public void remover(Aula aula){
+        if(!this.aulas.contains(aula)){
+            return;
+        }
+        this.aulas.remove(aula);
+        aula.desassociarSala();
+    }
+    public LinkedList<Aula> getAulas() {
+        return new LinkedList<Aula>(this.aulas);
+    }
     public LinkedList<Aula> getAulas(Horario horario) {
-        // TODO - getAulas
-        return null;
+        LinkedList<Aula> listaAuxiliar = new LinkedList<>();
+
+        for(Aula a: this.aulas) {
+           if(a.getHorario().isSobre(horario)){
+               listaAuxiliar.add(a);
+           }
+        }
+        return listaAuxiliar;
+
     }
 
 

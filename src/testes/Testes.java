@@ -62,17 +62,17 @@ public class Testes {
         Sala sala = new Sala("sala1", false);
         assert sala.isAberta() == false;
         seguranca.abrir(sala);
-        assert sala.isAberta() == true;
+        assert sala.isAberta();
         seguranca.fechar(sala);
-        assert sala.isAberta() == false;
+        assert !sala.isAberta();
 
     }
 
     public void testesAluno(){
         Aluno aluno = new Aluno("John Doe", 1234);
-        assert aluno.getNome() == "John Doe";
+        assert aluno.getNome().equals("John Doe");
         assert aluno.getNumero() == 1234;
-        assert aluno.getAulas().size() == 0;
+        assert aluno.getAulas().isEmpty();
         DiaSemana segunda = DiaSemana.SEGUNDA_FEIRA;
         Sala sala = new Sala("sala1", false);
         Horario horario = new Horario(segunda, 8, 1);

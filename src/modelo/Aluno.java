@@ -1,22 +1,18 @@
 package modelo;
 
-import java.util.LinkedList;
-
-public class Aluno extends Pessoa {
+public class Aluno extends PessoaComAulas {
 
     public Aluno(String nome, long numero) {
         super(nome, numero);
     }
 
-
     @Override
-    public void adicionar(Aula aula){
-        super.adicionar(aula);
+    protected void associar(Aula aula){
         aula.adicionar(this);
     }
 
-    public void remover(Aula aula){
-        super.remover(aula);
+    @Override
+    protected void desassociar(Aula aula){
         aula.remover(this);
     }
 
@@ -24,17 +20,6 @@ public class Aluno extends Pessoa {
         aula.adicionarLinhaSumario(this.nome);
     }
 
-    public LinkedList<Aula> getAulas() {
-        return new LinkedList<>(aulas);
-    }
 
-    public LinkedList<Aula> getAulas(Horario horario) {
-        LinkedList<Aula> listaAuxiliar = new LinkedList<>();
-        for (Aula aula : aulas) {
-            if (aula.getHorario().isSobre(horario)) {
-                listaAuxiliar.add(aula);
-            }
-        }
-        return listaAuxiliar;
-    }
+
 }

@@ -11,7 +11,6 @@ public class Aula extends Identificador{
     private Sala sala;
 
     public Aula(String nome, long numero, Horario horario, Sala sala) {
-
         this(nome, numero, horario, sala, null, new LinkedList<>());
     }
 

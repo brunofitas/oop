@@ -2,7 +2,7 @@ package modelo;
 
 import java.util.LinkedList;
 
-public class Professor extends Pessoa {
+public class Professor extends PessoaComAulas {
     private GabineteProfessor gabinete;
     private LinkedList<Horario> horariosAtendimento;
 
@@ -12,17 +12,13 @@ public class Professor extends Pessoa {
         this.horariosAtendimento = new LinkedList<>();
     }
 
-
-
     @Override
-    public void adicionar(Aula aula) {
-        super.adicionar(aula);
+    protected void associar(Aula aula){
         aula.setProfessor(this);
     }
 
     @Override
-    public void remover(Aula aula) {
-        super.remover(aula);
+    protected void desassociar(Aula aula){
         aula.desassociarProfessor();
     }
 
@@ -36,19 +32,7 @@ public class Professor extends Pessoa {
         }
     }
 
-    public LinkedList<Aula> getAulas() {
-        return new LinkedList<>(aulas);
-    }
 
-    public LinkedList<Aula> getAulas(Horario horario) {
-        LinkedList<Aula> listaAuxiliar = new LinkedList<>();
-        for (Aula aula : aulas) {
-            if (aula.getHorario().isSobre(horario)) {
-                listaAuxiliar.add(aula);
-            }
-        }
-        return listaAuxiliar;
-    }
 
     public GabineteProfessor getGabinete(){ return this.gabinete; }
 

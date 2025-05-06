@@ -12,6 +12,10 @@ public class Seguranca extends Identificador {
         this.horariosAtendimento = new LinkedList<>();
     }
 
+    public LinkedList<Horario> getHorariosAtendimento(){
+        return new LinkedList<>(this.horariosAtendimento);
+    }
+
     public GabineteSeguranca getGabinete() { return this.gabinete; }
 
     public void setGabinete(GabineteSeguranca gabinete){
@@ -31,59 +35,26 @@ public class Seguranca extends Identificador {
     }
 
     public void abrirGabinete(){
-        if(this.gabinete == null || this.gabinete.isAberta()){
-            return;
-        }
-        this.gabinete.abrir();
+        this.abrir(this.gabinete);
     }
 
     public void fecharGabinete(){
-        if(this.gabinete == null || !this.gabinete.isAberta()){
-            return;
-        }
-        this.gabinete.fechar();
+        this.fechar(this.gabinete);
     }
 
-    public void abrir(Sala sala){
-        if(sala.isAberta()){
+    public void abrir(Divisao divisao){
+        if(divisao.isAberta()){
             return;
         }
-        sala.abrir();
+        divisao.abrir();
     }
 
-    public void fechar(Sala sala){
-        if(!sala.isAberta()){
+    public void fechar(Divisao divisao){
+        if(!divisao.isAberta()){
             return;
         }
-        sala.fechar();
+        divisao.fechar();
     }
 
-    public void abrir(GabineteProfessor gabinete){
-        if(gabinete.isAberta()){
-            return;
-        }
-        gabinete.abrir();
-    }
-
-    public void fechar(GabineteProfessor gabinete){
-        if(!gabinete.isAberta()){
-            return;
-        }
-        gabinete.fechar();
-    }
-
-    public void abrir(GabineteSeguranca gabinete){
-        if(gabinete.isAberta()){
-            return;
-        }
-        gabinete.abrir();
-    }
-
-    public void fechar(GabineteSeguranca gabinete){
-        if(!gabinete.isAberta()){
-            return;
-        }
-        gabinete.fechar();
-    }
 
 }
