@@ -34,10 +34,12 @@ public abstract class PessoaComAulas extends Pessoa implements RepositorioAulas{
 
     protected void assinarSumario(Aula aula){}
 
+    @Override
     public LinkedList<Aula> getAulas() {
         return this.gestorAulas.getAulas();
     }
 
+    @Override
     public LinkedList<Aula> getAulas(Horario horario) {
         return this.gestorAulas.getAulas(horario);
     }

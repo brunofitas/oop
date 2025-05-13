@@ -2,18 +2,18 @@ package modelo;
 
 import java.util.LinkedList;
 
-public class Seguranca extends Identificador {
+public class Seguranca extends Pessoa {
     private GabineteSeguranca gabinete;
-    private LinkedList<Horario> horariosAtendimento;
+    private GestorFuncionario gestorFuncionario;
 
     public Seguranca(String nome, long numero, GabineteSeguranca gabinete){
         super(nome, numero);
         this.gabinete = gabinete;
-        this.horariosAtendimento = new LinkedList<>();
+        this.gestorFuncionario = new GestorFuncionario();
     }
 
     public LinkedList<Horario> getHorariosAtendimento(){
-        return new LinkedList<>(this.horariosAtendimento);
+        return this.gestorFuncionario.getHorariosAtendimento();
     }
 
     public GabineteSeguranca getGabinete() { return this.gabinete; }
