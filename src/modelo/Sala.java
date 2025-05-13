@@ -4,40 +4,24 @@ import java.util.LinkedList;
 
 public class Sala extends Divisao {
 
-    private LinkedList<Aula> aulas;
+    private GestorAulas gestorAulas;
 
     public Sala(String nome, boolean aberta){
         super(nome, aberta);
-        this.aulas = new LinkedList<Aula>();
+        this.gestorAulas = new GestorAulas();
     }
 
     public void adicionar(Aula aula){
-        if(aula == null || this.aulas.contains(aula)){
-            return;
-        }
-        this.aulas.add(aula);
-        aula.setSala(this);
+        this.gestorAulas.adicionar(aula);
     }
     public void remover(Aula aula){
-        if(!this.aulas.contains(aula)){
-            return;
-        }
-        this.aulas.remove(aula);
-        aula.desassociarSala();
+        this.gestorAulas.remover(aula);
     }
     public LinkedList<Aula> getAulas() {
-        return new LinkedList<Aula>(this.aulas);
+       return this.gestorAulas.getAulas();
     }
     public LinkedList<Aula> getAulas(Horario horario) {
-        LinkedList<Aula> listaAuxiliar = new LinkedList<>();
-
-        for(Aula a: this.aulas) {
-           if(a.getHorario().isSobre(horario)){
-               listaAuxiliar.add(a);
-           }
-        }
-        return listaAuxiliar;
-
+        return this.gestorAulas.getAulas(horario);
     }
 
 

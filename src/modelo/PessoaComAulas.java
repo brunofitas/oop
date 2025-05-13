@@ -3,32 +3,26 @@ package modelo;
 import java.util.LinkedList;
 
 public abstract class PessoaComAulas extends Pessoa{
-    protected LinkedList<Aula> aulas;
+    protected GestorAulas gestorAulas;
 
     public PessoaComAulas(String nome, long numero){
         super(nome, numero);
-        this.aulas = new LinkedList<>();
+        this.gestorAulas = new GestorAulas();
     }
 
     protected abstract void associar(Aula aula);
     protected abstract void desassociar(Aula aula);
 
     public void adicionar(Aula aula) {
-        if (aula == null || this.aulas.contains(aula)) {
-            return;
-        }
-        this.aulas.add(aula);
+        this.gestorAulas.adicionar(aula);
     }
 
     public void remover(Aula aula){
-        if (!aulas.contains(aula)){
-            return;
-        }
-        aulas.remove(aula);
+        this.gestorAulas.remover(aula);
     }
 
     public void preencherSumario(Aula aula){
-        if (!aulas.contains(aula)){
+        if (!this.gestorAulas.contem(aula)){
             return;
         }
         this.escreverSumario(aula);
@@ -39,16 +33,10 @@ public abstract class PessoaComAulas extends Pessoa{
     protected void assinarSumario(Aula aula){}
 
     public LinkedList<Aula> getAulas() {
-        return new LinkedList<>(aulas);
+        return this.gestorAulas.getAulas();
     }
 
     public LinkedList<Aula> getAulas(Horario horario) {
-        LinkedList<Aula> listaAuxiliar = new LinkedList<>();
-        for (Aula aula : aulas) {
-            if (aula.getHorario().isSobre(horario)) {
-                listaAuxiliar.add(aula);
-            }
-        }
-        return listaAuxiliar;
+        return this.gestorAulas.getAulas(horario);
     }
 }
