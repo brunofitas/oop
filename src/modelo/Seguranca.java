@@ -2,7 +2,7 @@ package modelo;
 
 import java.util.LinkedList;
 
-public class Seguranca extends Pessoa {
+public class Seguranca extends Pessoa implements Funcionario<GabineteSeguranca>{
     private GabineteSeguranca gabinete;
     private GestorFuncionario gestorFuncionario;
 
@@ -49,12 +49,25 @@ public class Seguranca extends Pessoa {
         divisao.abrir();
     }
 
+
     public void fechar(Divisao divisao){
         if(!divisao.isAberta()){
             return;
         }
         divisao.fechar();
     }
+
+    @Override
+    public void adicionar(Horario horario){
+        this.gestorFuncionario.adicionar(horario);
+    }
+
+    @Override
+    public void remover(Horario horario){
+        this.gestorFuncionario.remover(horario);
+    }
+
+
 
 
 }
