@@ -2,21 +2,23 @@ package modelo;
 
 import java.util.LinkedList;
 
-public abstract class PessoaComAulas extends Pessoa{
+public abstract class PessoaComAulas extends Pessoa implements RepositorioAulas{
     protected GestorAulas gestorAulas;
 
     public PessoaComAulas(String nome, long numero){
         super(nome, numero);
-        this.gestorAulas = new GestorAulas();
+        this.gestorAulas = new GestorAulas(this);
     }
 
-    protected abstract void associar(Aula aula);
-    protected abstract void desassociar(Aula aula);
+    @Override
+    public boolean contem(Aula aula){ return this.gestorAulas.contem(aula);}
 
+    @Override
     public void adicionar(Aula aula) {
         this.gestorAulas.adicionar(aula);
     }
 
+    @Override
     public void remover(Aula aula){
         this.gestorAulas.remover(aula);
     }

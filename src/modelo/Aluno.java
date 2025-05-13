@@ -7,19 +7,17 @@ public class Aluno extends PessoaComAulas {
     }
 
     @Override
-    protected void associar(Aula aula){
+    public void associar(Aula aula) {
         aula.adicionar(this);
     }
 
     @Override
-    protected void desassociar(Aula aula){
+    public void desassociar(Aula aula) {
         aula.remover(this);
     }
 
-    protected void escreverSumario(Aula aula){
-        aula.adicionarLinhaSumario(this.nome);
+    @Override
+    protected void escreverSumario(Aula aula) {
+        assinarSumario(aula);
     }
-
-
-
 }

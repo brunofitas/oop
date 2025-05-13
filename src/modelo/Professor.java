@@ -13,12 +13,12 @@ public class Professor extends PessoaComAulas {
     }
 
     @Override
-    protected void associar(Aula aula){
+    public void associar(Aula aula){
         aula.setProfessor(this);
     }
 
     @Override
-    protected void desassociar(Aula aula){
+    public void desassociar(Aula aula){
         aula.desassociarProfessor();
     }
 
