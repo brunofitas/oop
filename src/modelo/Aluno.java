@@ -6,13 +6,14 @@ public class Aluno extends PessoaComAulas {
         super(nome, numero);
     }
 
+
     @Override
-    protected void associar(Aula aula){
+    public void associar(Aula aula){
         aula.adicionar(this);
     }
 
     @Override
-    protected void desassociar(Aula aula){
+    public void desassociar(Aula aula){
         aula.remover(this);
     }
 

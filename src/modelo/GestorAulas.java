@@ -3,9 +3,12 @@ package modelo;
 import java.util.LinkedList;
 
 public class GestorAulas {
+    private final RepositorioAulas repositorioAulas;
+
     private LinkedList<Aula> aulas;
 
-    public GestorAulas(){
+    public GestorAulas(RepositorioAulas repositorioAulas){
+        this.repositorioAulas = repositorioAulas;
         this.aulas = new LinkedList<Aula>();
     }
 
@@ -14,7 +17,7 @@ public class GestorAulas {
             return;
         }
         this.aulas.add(aula);
-        // TODO - aula.setSala(this)
+        this.repositorioAulas.associar(aula);
     }
 
     public void remover(Aula aula){
@@ -22,7 +25,7 @@ public class GestorAulas {
             return;
         }
         this.aulas.remove(aula);
-        // TODO - aula.desassociarSala();
+        this.repositorioAulas.desassociar(aula);
     }
 
     public LinkedList<Aula> getAulas() {

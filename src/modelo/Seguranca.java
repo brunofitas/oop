@@ -2,18 +2,14 @@ package modelo;
 
 import java.util.LinkedList;
 
-public class Seguranca extends Identificador {
+public class Seguranca extends Pessoa implements Funcionario<GabineteSeguranca> {
     private GabineteSeguranca gabinete;
-    private LinkedList<Horario> horariosAtendimento;
+    private GestorFuncionario gestorFuncionario;
 
     public Seguranca(String nome, long numero, GabineteSeguranca gabinete){
         super(nome, numero);
-        this.gabinete = gabinete;
-        this.horariosAtendimento = new LinkedList<>();
-    }
-
-    public LinkedList<Horario> getHorariosAtendimento(){
-        return new LinkedList<>(this.horariosAtendimento);
+        this.setGabinete(gabinete);
+        this.gestorFuncionario = new GestorFuncionario();
     }
 
     public GabineteSeguranca getGabinete() { return this.gabinete; }
@@ -54,6 +50,21 @@ public class Seguranca extends Identificador {
             return;
         }
         divisao.fechar();
+    }
+
+    @Override
+    public void adicionar(Horario horario){
+        this.gestorFuncionario.adicionar(horario);
+    }
+
+    @Override
+    public void remover(Horario horario){
+        this.gestorFuncionario.remover(horario);
+    }
+
+    @Override
+    public LinkedList<Horario> getHorariosAtendimento(){
+        return this.gestorFuncionario.getHorariosAtendimento();
     }
 
 

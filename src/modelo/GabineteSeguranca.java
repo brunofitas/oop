@@ -2,7 +2,7 @@ package modelo;
 
 import java.util.LinkedList;
 
-public class GabineteSeguranca extends Divisao{
+public class GabineteSeguranca extends Gabinete{
 
     private LinkedList<Seguranca> segurancas;
 

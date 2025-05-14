@@ -2,23 +2,23 @@ package modelo;
 
 import java.util.LinkedList;
 
-public class Professor extends PessoaComAulas {
+public class Professor extends PessoaComAulas implements Funcionario<GabineteProfessor> {
     private GabineteProfessor gabinete;
-    private LinkedList<Horario> horariosAtendimento;
+    private GestorFuncionario gestorFuncionario;
 
     public Professor(String nome, long numero, GabineteProfessor gabinete) {
         super(nome, numero);
         this.setGabinete(gabinete);
-        this.horariosAtendimento = new LinkedList<>();
+        this.gestorFuncionario = new GestorFuncionario();
     }
 
     @Override
-    protected void associar(Aula aula){
+    public void associar(Aula aula){
         aula.setProfessor(this);
     }
 
     @Override
-    protected void desassociar(Aula aula){
+    public void desassociar(Aula aula){
         aula.desassociarProfessor();
     }
 
@@ -52,21 +52,6 @@ public class Professor extends PessoaComAulas {
         this.gabinete = null;
     }
 
-    public void adicionar(Horario horario){
-        if(this.horariosAtendimento.contains(horario)){
-            return;
-        }
-        this.horariosAtendimento.add(horario);
-    }
-
-    public void remover(Horario horario){
-        this.horariosAtendimento.remove(horario);
-    }
-
-    public LinkedList<Horario> getHorariosatendimento(){
-        return new LinkedList<>(this.horariosAtendimento);
-    }
-
     public void abrirGabinete(){
         if(this.gabinete == null || this.gabinete.isAberta()){
             return;
@@ -95,5 +80,19 @@ public class Professor extends PessoaComAulas {
         sala.fechar();
     }
 
+    @Override
+    public void adicionar(Horario horario){
+        this.gestorFuncionario.adicionar(horario);
+    }
+
+    @Override
+    public void remover(Horario horario){
+        this.gestorFuncionario.remover(horario);
+    }
+
+    @Override
+    public LinkedList<Horario> getHorariosAtendimento(){
+        return this.gestorFuncionario.getHorariosAtendimento();
+    }
 
 }
