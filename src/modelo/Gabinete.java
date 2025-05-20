@@ -7,6 +7,7 @@ public abstract class Gabinete<T extends Funcionario> extends Divisao{
 
     public Gabinete(String nome, boolean aberta){
         super(nome, aberta);
+        this.funcionarios = new LinkedList<T>();
     }
 
     public void adicionar(T funcionario){
@@ -14,7 +15,7 @@ public abstract class Gabinete<T extends Funcionario> extends Divisao{
             return;
         }
         this.funcionarios.add(funcionario);
-        //TODO - funcionario.setGabinete(this);
+        funcionario.setGabinete(this);
 
     }
     public void remover(T funcionario){

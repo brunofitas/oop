@@ -2,54 +2,46 @@ package modelo;
 
 import java.util.LinkedList;
 
-public class Seguranca extends Pessoa implements Funcionario<GabineteSeguranca> {
-    private GabineteSeguranca gabinete;
-    private GestorFuncionario gestorFuncionario;
+public class Seguranca extends Pessoa implements Funcionario<GabineteSeguranca, Divisao> {
+    private GestorFuncionario<GabineteSeguranca, Divisao> gestorFuncionario;
 
     public Seguranca(String nome, long numero, GabineteSeguranca gabinete){
         super(nome, numero);
+        this.gestorFuncionario = new GestorFuncionario(this);
         this.setGabinete(gabinete);
-        this.gestorFuncionario = new GestorFuncionario();
     }
 
-    public GabineteSeguranca getGabinete() { return this.gabinete; }
+    @Override
+    public GabineteSeguranca getGabinete() { return this.gestorFuncionario.getGabinete(); }
 
+    @Override
     public void setGabinete(GabineteSeguranca gabinete){
-        if(gabinete == null || this.gabinete == gabinete){
-            return;
-        }
-        this.gabinete = gabinete;
-        this.gabinete.adicionar(this);
+        this.gestorFuncionario.setGabinete(gabinete);
     }
 
+    @Override
     public void desassociarGabinete(){
-        if(this.gabinete == null){
-            return;
-        }
-        this.gabinete.remover(this);
-        this.gabinete = null;
+        this.gestorFuncionario.desassociarGabinete();
     }
 
+    @Override
     public void abrirGabinete(){
-        this.abrir(this.gabinete);
+        this.gestorFuncionario.abrirGabinete();
     }
 
+    @Override
     public void fecharGabinete(){
-        this.fechar(this.gabinete);
+        this.gestorFuncionario.fecharGabinete();
     }
 
+    @Override
     public void abrir(Divisao divisao){
-        if(divisao.isAberta()){
-            return;
-        }
-        divisao.abrir();
+        this.gestorFuncionario.abrir(divisao);
     }
 
+    @Override
     public void fechar(Divisao divisao){
-        if(!divisao.isAberta()){
-            return;
-        }
-        divisao.fechar();
+        this.gestorFuncionario.fechar(divisao);
     }
 
     @Override
